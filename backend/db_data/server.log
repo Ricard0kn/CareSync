@@ -4,3 +4,1357 @@
 2026-06-16 20:47:09.371 EDT [20179] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2026-06-16 20:47:09.374 EDT [20180] LOG:  database system was shut down at 2026-06-16 20:40:55 EDT
 2026-06-16 20:47:09.377 EDT [20179] LOG:  database system is ready to accept connections
+2026-06-17 06:35:40.087 EDT [21725] FATAL:  role "postgres" does not exist
+2026-06-17 06:35:58.321 EDT [21730] FATAL:  lock file "postmaster.pid" already exists
+2026-06-17 06:35:58.321 EDT [21730] HINT:  Is another postmaster (PID 20179) running in data directory "/Users/ricardoneri/Desktop/caresync/CareSync/backend/./db_data"?
+2026-06-17 06:36:12.451 EDT [21734] FATAL:  lock file "postmaster.pid" already exists
+2026-06-17 06:36:12.451 EDT [21734] HINT:  Is another postmaster (PID 20179) running in data directory "/Users/ricardoneri/Desktop/caresync/CareSync/backend/./db_data"?
+2026-06-22 18:44:03.383 EDT [96184] FATAL:  lock file "postmaster.pid" already exists
+2026-06-22 18:44:03.383 EDT [96184] HINT:  Is another postmaster (PID 20179) running in data directory "/Users/ricardoneri/Desktop/caresync/CareSync/backend/./db_data"?
+2026-06-22 18:51:36.857 EDT [20179] LOG:  received smart shutdown request
+2026-06-22 18:51:36.865 EDT [20179] LOG:  background worker "logical replication launcher" (PID 20186) exited with exit code 1
+2026-06-22 18:51:36.867 EDT [20181] LOG:  shutting down
+2026-06-22 18:51:36.880 EDT [20179] LOG:  database system is shut down
+2026-06-22 18:53:23.806 EDT [96198] LOG:  starting PostgreSQL 14.23 (Homebrew) on aarch64-apple-darwin25.4.0, compiled by Apple clang version 21.0.0 (clang-2100.0.123.102), 64-bit
+2026-06-22 18:53:23.807 EDT [96198] LOG:  listening on IPv6 address "::1", port 5432
+2026-06-22 18:53:23.807 EDT [96198] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-06-22 18:53:23.807 EDT [96198] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2026-06-22 18:53:23.813 EDT [96199] LOG:  database system was shut down at 2026-06-22 18:51:36 EDT
+2026-06-22 18:53:23.817 EDT [96198] LOG:  database system is ready to accept connections
+2026-06-22 19:46:10.926 EDT [227] ERROR:  database "ehr_db" already exists
+2026-06-22 19:46:10.926 EDT [227] STATEMENT:  CREATE DATABASE ehr_db;
+2026-06-22 21:37:36.259 EDT [1484] ERROR:  syntax error at or near "{" at character 23
+2026-06-22 21:37:36.259 EDT [1484] STATEMENT:  CREATE TABLE agencies {
+	    agency_id SERIAL PRIMARY KEY,
+	    name VARCHAR(255) NOT NULL,
+	    code VARCHAR(55) NOT NULL UNIQUE,
+	    address TEXT,
+	    phone VARCHAR(20),
+	    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	    
+	  
+	};
+2026-06-22 21:50:18.174 EDT [2247] ERROR:  syntax error at or near "SELECT" at character 24
+2026-06-22 21:50:18.174 EDT [2247] STATEMENT:  SELECT * FROM agencies
+	SELECT * FROM agencies
+	SELECT * FROM agencies
+	DESCRIBE agencies;
+2026-06-22 21:50:27.990 EDT [2247] ERROR:  syntax error at or near "DESCRIBE" at character 1
+2026-06-22 21:50:27.990 EDT [2247] STATEMENT:  DESCRIBE agencies;
+2026-06-22 21:52:12.025 EDT [2247] ERROR:  syntax error at or near "CHANGE" at character 22
+2026-06-22 21:52:12.025 EDT [2247] STATEMENT:  ALTER TABLE agencies CHANGE agency_id id  SERIAL PRIMARY KEY;
+2026-06-22 21:52:42.560 EDT [2247] ERROR:  syntax error at or near "CHANGE" at character 22
+2026-06-22 21:52:42.560 EDT [2247] STATEMENT:  ALTER TABLE agencies CHANGE agency_id id;
+2026-06-22 21:52:48.088 EDT [2247] ERROR:  syntax error at or near "CHANGE" at character 22
+2026-06-22 21:52:48.088 EDT [2247] STATEMENT:  ALTER TABLE agencies CHANGE agency_id id;
+2026-06-22 21:58:18.133 EDT [2447] ERROR:  syntax error at or near "." at character 45
+2026-06-22 21:58:18.133 EDT [2447] STATEMENT:  CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY.
+	  name VARCHAR(100) UNIQUE NOT NULL,
+	  description TEXT,
+	  created_at TIMAESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	  
+	)
+2026-06-22 21:58:31.303 EDT [2473] ERROR:  type "timaestamp" does not exist at character 117
+2026-06-22 21:58:31.303 EDT [2473] STATEMENT:  CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) UNIQUE NOT NULL,
+	  description TEXT,
+	  created_at TIMAESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	  
+	)
+2026-06-23 21:35:28.065 EDT [15938] ERROR:  syntax error at or near "created_at" at character 568
+2026-06-23 21:35:28.065 EDT [15938] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2)
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NOT DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	),
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id)
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	) ;
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  user_id INT REFERENCES useres(id) UNIQUE,
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	)
+	
+2026-06-23 21:38:48.196 EDT [15983] ERROR:  syntax error at or near "created_at" at character 568
+2026-06-23 21:38:48.196 EDT [15983] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2)
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NOT DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	),
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id)
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	) ;
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  user_id INT REFERENCES useres(id) UNIQUE,
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
+2026-06-23 21:38:54.020 EDT [15985] ERROR:  syntax error at or near "created_at" at character 568
+2026-06-23 21:38:54.020 EDT [15985] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2)
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NOT DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	),
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id)
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	) ;
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  user_id INT REFERENCES useres(id) UNIQUE,
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
+2026-06-23 21:40:25.477 EDT [16025] ERROR:  syntax error at or near "created_at" at character 568
+2026-06-23 21:40:25.477 EDT [16025] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2)
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NOT DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	),
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id)
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  user_id INT REFERENCES useres(id) UNIQUE,
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
+2026-06-23 21:40:32.842 EDT [16031] ERROR:  syntax error at or near "created_at" at character 568
+2026-06-23 21:40:32.842 EDT [16031] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2)
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NOT DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	),
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id)
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  user_id INT REFERENCES useres(id) UNIQUE,
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id) UNIQUE,
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
+2026-06-23 21:52:27.006 EDT [16390] ERROR:  relation "agencies" already exists
+2026-06-23 21:52:27.006 EDT [16390] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id),
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- USER Roles
+	CREATE TABLE user_roles (
+	    user_id INT REFERENCES users(id),
+	    role_id INT REFERENCES roles(id),
+	    PRIMARY KEY(user_id, role_id)
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  user_id INT REFERENCES users(id),
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
+2026-06-23 21:53:22.237 EDT [16429] ERROR:  relation "roles" already exists
+2026-06-23 21:53:22.237 EDT [16429] STATEMENT:  -- Tables that covers agencies
+	CREATE TABLE IF NOT EXISTS agencies (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(255) NOT NULL, 
+	  email VARCHAR(255) NOT NULL UNIQUE, 
+	  phone VARCHAR(20), 
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE, 
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Subscriptions
+	CREATE TABLE subscriptions (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  plan VARCHAR(100),
+	  status VARCHAR(50),
+	  start_date DATE DEFAULT NOW(),
+	  end_date DATE,
+	  amount NUMERIC(10,2),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Invoices
+	CREATE TABLE invoices (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  subscription_id INT REFERENCES subscriptions(id),
+	  Invoice_number VARCHAR(100) NOT NULL,
+	  amount NUMERIC(10,2) NOT NULL,
+	  status VARCHAR(50) NOT NULL,
+	  invoice_date DATE,
+	  due_date DATE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Payments
+	CREATE TABLE payments (
+	  id SERIAL PRIMARY KEY,
+	  invoice_id INT REFERENCES invoices(id),
+	  amount NUMERIC(10,2),
+	  method VARCHAR(50) NOT NULL,
+	  transaction_id VARCHAR(100) UNIQUE,
+	  paid_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Table that stores users
+	CREATE TABLE users (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password VARCHAR(255) NOT NULL,
+	  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+	  last_login DATE DEFAULT NOW(),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Roles
+	CREATE TABLE roles (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(50) NOT NULL UNIQUE,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Permissions
+	CREATE TABLE permissions (
+	  id SERIAL PRIMARY KEY,
+	  name VARCHAR(100) NOT NULL UNIQUE,
+	  module VARCHAR(100) NOT NULL,
+	  description TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- User Permissions
+	CREATE TABLE user_permissions (
+	  id SERIAL PRIMARY KEY,
+	  users_id INT REFERENCES users(id),
+	  -- FOREIGN KEY 
+	  granted_id INT,
+	  FOREIGN KEY(granted_id) REFERENCES users(id),
+	  permission_id INT,
+	  FOREIGN KEY(permission_id) REFERENCES permissions(id),
+	  -- Log
+	  granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- USER Roles
+	CREATE TABLE user_roles (
+	    user_id INT REFERENCES users(id),
+	    role_id INT REFERENCES roles(id),
+	    PRIMARY KEY(user_id, role_id)
+	);
+	-- Clients
+	CREATE TABLE clients (
+	  id SERIAL PRIMARY KEY,
+	  agency_id INT REFERENCES agencies(id),
+	  first_name VARCHAR(100) NOT NULL,
+	  last_name VARCHAR(100) NOT NULL,
+	  date_of_birth DATE NOT NULL,
+	  gender VARCHAR(20) NOT NULL,
+	  phone VARCHAR(20) NOT NULL,
+	  email VARCHAR(255),
+	  address TEXT,
+	  status VARCHAR(20) DEFAULT 'Active',
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Client Assignments
+	CREATE TABLE client_assignment (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  user_id INT REFERENCES users(id),
+	  role_type VARCHAR(20) NOT NULL UNIQUE,
+	  assigned_by INT REFERENCES users(id),
+	  assigned_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  is_active BOOLEAN DEFAULT TRUE
+	);
+	-- Notes
+	CREATE TABLE notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  note_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  service_date DATE,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Supervision Notes
+	CREATE TABLE supervision_notes (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  supervisor_id INT REFERENCES users(id),
+	  content TEXT,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Docuements
+	CREATE TABLE documents (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  uploaded_by INT REFERENCES users(id),
+	  document_type VARCHAR(50),
+	  file_name VARCHAR(255),
+	  file_url TEXT,
+	  uploaded_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Active'
+	);
+	-- Assesments
+	CREATE TABLE assessments (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  author_id INT REFERENCES users(id),
+	  assessment_type VARCHAR(50),
+	  title VARCHAR(255),
+	  content TEXT,
+	  assessment_date DATE,
+	  due_date DATE NULL,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  status VARCHAR(20) DEFAULT 'Draft'
+	);
+	-- Documentation Review
+	CREATE TABLE documentation_reviews (
+	  id SERIAL PRIMARY KEY,
+	  document_type VARCHAR(50),
+	  document_id INT REFERENCES documents(id),
+	  reviewer_id INT REFERENCES users(id),
+	  reviewer_role VARCHAR(30),
+	  status VARCHAR(20),
+	  feedback TEXT NULL,
+	  reviewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	-- Tasks
+	CREATE TABLE tasks (
+	  id SERIAL PRIMARY KEY,
+	  client_id INT REFERENCES clients(id),
+	  assigned_to INT REFERENCES users(id),
+	  description TEXT,
+	  due_date TIMESTAMP,
+	  status VARCHAR(250),
+	  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	);
+	
