@@ -5,24 +5,24 @@ const validator = require('validator');
 const email = 'email@email.com';
 
 const validateEmail = (req, res, next) => {
-
+    console.log("--> Hit the middle!");
     const { email } = req.body;
     
-    if (!email) {
-      return res.status(400).json(error: "Email is required")}
+    if (!email) {return res.status(400).json({error: "Email is required"})} 
     
-    const normalizedEmail = validator.normalizedEmail(email);
+    const normalizedEmail = validator.normalizeEmail(email);
 
     if (!validator.isEmail(normalizedEmail)) {
-      return res,status(400).json(error: "Invalid email format")
-}
+      return res,status(400).json({error: "Invalid email format"})}
+
     req.body.email = normalizedEmail
 
     next();
 
 }
 
-const function authenticationToken(req, res, next) {
+
+const authenticationToken = (req, res, next) => {
   
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -43,4 +43,7 @@ const function authenticationToken(req, res, next) {
 
 }
 
-module.exports = validateEmail
+module.exports = {
+    validateEmail,
+    authenticationToken
+};
