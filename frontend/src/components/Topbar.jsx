@@ -1,14 +1,17 @@
 import { Bell, Menu } from "lucide-react";
 
-export default function Topbar({ title }) {
-
+export default function Topbar({ title, toggleSidebar }) {
     return (
-
         <header className="topbar">
 
             <div className="left">
 
-                <Menu size={22} />
+                <button
+                    className="menu-btn"
+                    onClick={toggleSidebar}
+                >
+                    <Menu size={22} />
+                </button>
 
                 <h1>{title}</h1>
 
@@ -31,7 +34,5 @@ export default function Topbar({ title }) {
             </div>
 
         </header>
-
     );
-
 }

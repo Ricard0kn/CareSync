@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../components/Dashboard.css";
 
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
@@ -7,7 +7,7 @@ import AuthorizationOverview from "../components/AuthorizationOverview";
 import UpcomingRequirements from "../components/UpcomingRequirements";
 import RecentNotes from "../components/RecentNotes";
 
-import profilePic from "../assets/profile.jpg";
+//import profilePic from "../assets/profile.jpg";
 
 export default function ClientProfile() {
 
@@ -41,7 +41,7 @@ export default function ClientProfile() {
                     <div className="profile-left">
 
                         <img
-                            src={profilePic}
+                            //src={profilePic}
                             alt="Client"
                             className="profile-image"
                         />

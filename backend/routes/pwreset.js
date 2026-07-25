@@ -44,7 +44,7 @@ router.post('/changepassword', async (req, res) => {
     const saltRound = 10
     const updateHashPassword = await bcrypt(new_password, saltRound)
 
-    // TODO: 
+    // TODO: Passoword Change 
     try {
         const updatePassword = pool.query(
         'UPDATE users SET password = $1 WHERE email = $2;'

@@ -1,7 +1,38 @@
 import "./Login.css";
-import { HeartHandshake, Eye, EyeOff } from "lucide-react";
 
+import { HeartHandshake, Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+import api from '../api/axios';
+import { useAuth } from "../auth/AuthProvider" 
+//TODO: Add a invalid credentials message when loging in
 export default function Login() {
+
+    // Authentication
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    const { login } = useAuth();
+    
+    async function AuthUser(e) {
+
+      e.preventDefault();
+
+      try {
+    
+        const userData = await login(email, password)
+
+        console.log("Button clicked! Sending details:", email, password);
+
+        navigate('/dashboard')
+
+      } catch (error){
+        console.error('Error fetching data', error.message);
+      }
+    }
+
   return (
     <div className="login-page">
       <div className="login-card">
@@ -25,6 +56,8 @@ export default function Login() {
               <label>Email Address</label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
               />
             </div>
@@ -35,6 +68,8 @@ export default function Login() {
               <div className="password-input">
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                 />
                 <Eye size={18} />
@@ -55,7 +90,7 @@ export default function Login() {
               </button>
             </div>
 
-            <button className="signin-btn">
+            <button className="signin-btn" onClick={AuthUser}>
               Sign In
             </button>
 

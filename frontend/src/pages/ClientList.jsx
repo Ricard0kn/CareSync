@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../components/Dashboard.css";
 import Topbar from "../components/Topbar";
 import ClientTable from "../components/ClientTable";
 

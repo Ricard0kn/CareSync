@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
         message: "Invalid Password"
       })
     }
-
+// TODO: When we implement permisions it will need to be added below
     const payload = {
       UserId: user.id,
       email: user.email
@@ -113,7 +113,8 @@ router.post('/login', async (req, res) => {
     
     res.json({ 
       message: 'Login Successfully',
-      token: token 
+      token: token,
+      user: user.email
     });
 })
 

@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../components/Dashboard.css";
 
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
@@ -7,6 +7,7 @@ import StatCard from "../components/StatCard";
 import ScheduleCard from "../components/ScheduleCard";
 import TasksCard from "../components/TasksCard";
 import QuickActions from "../components/QuickActions";
+import { useState } from "react";
 
 import {
     Calendar,
@@ -16,14 +17,25 @@ import {
 } from "lucide-react";
 
 export default function QMHPDashboard() {
+
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+
     return (
-        <div className="dashboard">
+        <div
+            className="dashboard-content"
+            style={{
+                marginLeft: sidebarOpen ? "260px" : "80px"
+            }}
+        >
 
-            <Sidebar />
+        <Sidebar isOpen={sidebarOpen} />
 
-            <div className="dashboard-content">
+        <div className="dashboard-content">
 
-                <Topbar title="QMHP Dashboard" />
+            <Topbar
+                title="QMHP Dashboard"
+                toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+            />
 
                 <h2 className="welcome-title">
                     Welcome back, Ricardo!

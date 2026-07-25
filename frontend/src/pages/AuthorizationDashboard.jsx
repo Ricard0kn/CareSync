@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../components/Dashboard.css";
 
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
@@ -13,9 +13,10 @@ import {
     Filter,
     Download
 } from "lucide-react";
+import { useState } from "react";
 
 export default function AuthorizationDashboard() {
-
+    
     const authorizations = [
         {
             client: "John Doe",

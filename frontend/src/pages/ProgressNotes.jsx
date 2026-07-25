@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../components/Dashboard.css";
 import {
   Calendar,
   Clock3,

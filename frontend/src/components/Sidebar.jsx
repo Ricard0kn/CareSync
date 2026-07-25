@@ -7,70 +7,117 @@ import {
     ShieldAlert,
     CreditCard,
     MessageSquare,
-    Settings
+    Settings,
+    LogOut
 } from "lucide-react";
 
-export default function Sidebar() {
+import { NavLink, useNavigate } from "react-router-dom";
+
+export default function Sidebar({ isOpen = true }) {
+
+    const navigate = useNavigate();
+
+    const menuItems = [
+        {
+            title: "Dashboard",
+            icon: <LayoutDashboard size={20} />,
+            path: "/Dashboard"
+        },
+        {
+            title: "Clients",
+            icon: <Users size={20} />,
+            path: "/ClientList"
+        },
+        {
+            title: "Staff",
+            icon: <UserRound size={20} />,
+            path: "/ClientProfile"
+        },
+        {
+            title: "Authorizations",
+            icon: <ClipboardCheck size={20} />,
+            path: "/Authorization"
+        },
+        {
+            title: "Progress Notes",
+            icon: <FileBarChart size={20} />,
+            path: "/Notes"
+        },
+        {
+            title: "Supervision",
+            icon: <ShieldAlert size={20} />,
+            path: "/Supervision"
+        },
+        {
+            title: "Billing",
+            icon: <CreditCard size={20} />,
+            path: "/Billing"
+        },
+        {
+            title: "Messages",
+            icon: <MessageSquare size={20} />,
+            path: "/Messages"
+        },
+        {
+            title: "Settings",
+            icon: <Settings size={20} />,
+            path: "/Settings"
+        }
+    ];
+
+    function logout() {
+        localStorage.removeItem("token");
+        navigate("/");
+    }
 
     return (
-
-        <aside className="sidebar">
+        <aside className={`sidebar ${isOpen ? "" : "collapsed"}`}>
 
             <div className="logo">
-                <h2>CareConnect</h2>
-                <span>EHR</span>
+
+                <h2>{isOpen ? "CareConnect" : "CC"}</h2>
+
+                {isOpen && <span>EHR</span>}
+
             </div>
 
-            <nav>
+            <nav className="sidebar-nav">
 
-                <a className="active">
-                    <LayoutDashboard size={18}/>
-                    Dashboard
-                </a>
+                {menuItems.map((item) => (
 
-                <a>
-                    <Users size={18}/>
-                    Clients
-                </a>
+                    <NavLink
+                        key={item.title}
+                        to={item.path}
+                        className={({ isActive }) =>
+                            isActive
+                                ? "sidebar-link active"
+                                : "sidebar-link"
+                        }
+                    >
+                        {item.icon}
 
-                <a>
-                    <UserRound size={18}/>
-                    Staff
-                </a>
+                        {isOpen && <span>{item.title}</span>}
 
-                <a>
-                    <ClipboardCheck size={18}/>
-                    Authorizations
-                </a>
+                    </NavLink>
 
-                <a>
-                    <FileBarChart size={18}/>
-                    Reports
-                </a>
-
-                <a>
-                    <ShieldAlert size={18}/>
-                    Compliance
-                </a>
-
-                <a>
-                    <CreditCard size={18}/>
-                    Billing
-                </a>
-
-                <a>
-                    <MessageSquare size={18}/>
-                    Messages
-                </a>
-
-                <a>
-                    <Settings size={18}/>
-                    Settings
-                </a>
+                ))}
 
             </nav>
 
-        </aside>
+            <div className="sidebar-footer">
 
+                <button
+                    className="logout-btn"
+                    onClick={logout}
+                >
+                    <LogOut size={20} />
+
+                    {isOpen && <span>Logout</span>}
+
+                </button>
+
+            </div>
+
+        </aside>
     );
 }

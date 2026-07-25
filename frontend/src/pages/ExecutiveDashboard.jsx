@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../components/Dashboard.css";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import StatCard from "../components/StatCard";
